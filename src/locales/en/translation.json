@@ -1,0 +1,19 @@
+{   
+    "THIS IS THE HEADER": "this is the header",
+    "connecter" : "Login",
+    "agence": "Agency",
+    "matricule": "Registration Number",
+    "monCompte": "My Account",
+    "parametres": "Settings",
+    "deconnexion": "Logout",
+    
+    
+    "THIS IS THE LOGIN PAGE": "this is the Login page",
+    "connecter-vous-sur-trackee": "Log in to Trackee",
+    "Entrez-votre-Email": "Enter your Email",
+    "Entrez-votre-Mot-de-passe": "Enter your Password",
+    "Connexion...": "Logging in...",
+    "Se-deconnecter": "LOG OUT",
+    "Se-connecter": "LOG IN",
+    "Mot-de-passe-oublié": "Forgot Password?"
+}
