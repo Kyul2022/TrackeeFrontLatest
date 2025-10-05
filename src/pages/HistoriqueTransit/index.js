@@ -70,7 +70,7 @@ const HistoriqueTransit = () => {
     setError(null);
 
     try {
-      const response = await authFetch('http://192.168.28.128:8080/api/org/agencies/allforx');
+      const response = await authFetch('http://84.247.135.231:8080/api/org/agencies/allforx');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -117,7 +117,7 @@ const HistoriqueTransit = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/handover/history/packages/from-me', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/handover/history/packages/from-me', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -159,7 +159,7 @@ const HistoriqueTransit = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/available', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/available', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -201,7 +201,7 @@ const HistoriqueTransit = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/handover/history/from-me/onpackage/' + colisId, {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/handover/history/from-me/onpackage/' + colisId, {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -258,7 +258,7 @@ const HistoriqueTransit = () => {
 
       // Use different API endpoints based on transit type
       if (newTransit.isExternal) {
-        apiUrl = `http://192.168.28.128:8080/api/delivery/handover/changePacketExternal`;
+        apiUrl = `http://84.247.135.231:8080/api/delivery/handover/changePacketExternal`;
         requestBody = {
           packetId: newTransit.packageId,
           deliveryId: newTransit.toDelivery,
@@ -266,7 +266,7 @@ const HistoriqueTransit = () => {
           note: newTransit.notes || "Transit externe"
         };
       } else {
-        apiUrl = `http://192.168.28.128:8080/api/delivery/handover/changePacket/${newTransit.packageId}/${newTransit.toDelivery}`;
+        apiUrl = `http://84.247.135.231:8080/api/delivery/handover/changePacket/${newTransit.packageId}/${newTransit.toDelivery}`;
         requestBody = {
         };
       }
@@ -334,7 +334,7 @@ const HistoriqueTransit = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/handover/history/throughMe', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/handover/history/throughMe', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -376,7 +376,7 @@ const HistoriqueTransit = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/handover/history/packages/throughMe', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/handover/history/packages/throughMe', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {

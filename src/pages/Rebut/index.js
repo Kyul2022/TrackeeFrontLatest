@@ -35,7 +35,7 @@ const Rebut = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/rebut/allforme', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/rebut/allforme', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {

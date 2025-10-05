@@ -60,7 +60,7 @@ const Reception = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/alltome', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/alltome', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -116,7 +116,7 @@ const Reception = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/package/alltome', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/package/alltome', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -158,7 +158,7 @@ const Reception = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/going-external', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/going-external', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -220,7 +220,7 @@ const Reception = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
       //alert(currentDeliveryId)
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/reception/'+currentDeliveryId, {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/reception/'+currentDeliveryId, {
         method: 'POST',
         credentials: 'include', // Include session cookies
         headers: {
@@ -298,7 +298,7 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
       //alert(selectedItem);
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/retrait/'+selectedItem, {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/retrait/'+selectedItem, {
         method: 'POST',
         credentials: 'include', // Include session cookies
         headers: {

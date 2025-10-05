@@ -49,7 +49,7 @@ const NewAgency = () => {
           // Ajoutez d'autres champs si nécessaire
         };
   
-        const response = await authFetch('http://192.168.28.128:8080/api/org/bus', {
+        const response = await authFetch('http://84.247.135.231:8080/api/org/bus', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

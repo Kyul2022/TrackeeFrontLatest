@@ -44,7 +44,7 @@ const RegisterUser = () => {
   //alert("Form data being sent: " + JSON.stringify(formData)); 
       setLoading(true);
   try {
-    const response = await authFetch("http://192.168.28.128:8080/api/users/register-root", {
+    const response = await authFetch("http://84.247.135.231:8080/api/users/register-root", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const RegisterUser = () => {
       setError(null);
       
       try {
-        const response = await authFetch('http://192.168.28.128:8080/api/org/agencies/allforx');
+        const response = await authFetch('http://84.247.135.231:8080/api/org/agencies/allforx');
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

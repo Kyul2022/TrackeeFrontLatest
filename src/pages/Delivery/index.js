@@ -61,7 +61,7 @@ const Delivery = () => {
   // authFetch deliveries from Spring Boot API
   const fetchDeliveries = async () => {
     try {
-    const response = await authFetch("http://192.168.28.128:8080/api/delivery/delivery/allfrom-me");
+    const response = await authFetch("http://84.247.135.231:8080/api/delivery/delivery/allfrom-me");
     if (!response.ok) {
       if (response.status === 401) {
         throw new Error("Session expirée. Veuillez vous reconnecter.");
@@ -83,7 +83,7 @@ const Delivery = () => {
   const fetchPackagesForDelivery = async (deliveryId) => {
   try {
     const response = await authFetch(
-      `http://192.168.28.128:8080/api/delivery/package/all/${deliveryId}`
+      `http://84.247.135.231:8080/api/delivery/package/all/${deliveryId}`
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
@@ -146,7 +146,7 @@ const Delivery = () => {
   e.preventDefault();
       setLoading(true);
   try {
-    const response = await authFetch("http://192.168.28.128:8080/api/delivery/delivery/delivery", {
+    const response = await authFetch("http://84.247.135.231:8080/api/delivery/delivery/delivery", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -238,7 +238,7 @@ if (pdfWindow) {
       setError(null);
       
       try {
-        const response = await authFetch('http://192.168.28.128:8080/api/org/bus/available');
+        const response = await authFetch('http://84.247.135.231:8080/api/org/bus/available');
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -292,7 +292,7 @@ if (pdfWindow) {
       setError(null);
       
       try {
-        const response = await authFetch('http://192.168.28.128:8080/api/users/drivers/available');
+        const response = await authFetch('http://84.247.135.231:8080/api/users/drivers/available');
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -345,7 +345,7 @@ if (pdfWindow) {
       setError(null);
       
       try {
-        const response = await authFetch('http://192.168.28.128:8080/api/org/agencies/allforx');
+        const response = await authFetch('http://84.247.135.231:8080/api/org/agencies/allforx');
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -420,7 +420,7 @@ if (pdfWindow) {
       for (const packageNumSerie of selectedPackages) {
         try {
           //alert(packageNumSerie);
-          const response = await authFetch(`http://192.168.28.128:8080/api/delivery/package/delete/${packageNumSerie}`, {
+          const response = await authFetch(`http://84.247.135.231:8080/api/delivery/package/delete/${packageNumSerie}`, {
             method: 'POST',
             credentials: 'include',
             headers: { 
@@ -481,7 +481,7 @@ if (pdfWindow) {
     const handleConfirmUpdate = async () => {
       setLoading(true);
     try {
-          const response = await authFetch(`http://192.168.28.128:8080/api/delivery/delivery/update/${deliveryToUpdate}`, {
+          const response = await authFetch(`http://84.247.135.231:8080/api/delivery/delivery/update/${deliveryToUpdate}`, {
             method: 'POST',
             credentials: 'include',
             headers: { 
@@ -528,7 +528,7 @@ const handleStartDelivery = async (deliveryId) => {
   setLoading(true); // Add loading state if you have it
   
   try {
-    const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/kickoff/'+deliveryId, {
+    const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/kickoff/'+deliveryId, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -592,7 +592,7 @@ const handleStartDelivery = async (deliveryId) => {
 /*
   useEffect(() => {
     (async () => {
-      const resp = await authFetch("http://192.168.28.128:8080/api/items");
+      const resp = await authFetch("http://84.247.135.231:8080/api/items");
       if (!resp.ok) {
         console.error("Failed:", await resp.text());
         return;

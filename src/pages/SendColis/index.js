@@ -44,7 +44,7 @@ const SendColis = () => {
       setError(null);
       
       try {
-        const response = await authFetch('http://192.168.28.128:8080/api/org/agencies/allforx');
+        const response = await authFetch('http://84.247.135.231:8080/api/org/agencies/allforx');
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -111,7 +111,7 @@ const handleImportPackage = async () => {
         
         // Use different API endpoints based on import type
         if (importType === 'external') {
-            apiUrl = `http://192.168.28.128:8080/api/delivery/handover/changePacketExternal`;
+            apiUrl = `http://84.247.135.231:8080/api/delivery/handover/changePacketExternal`;
             requestBody = {
                 packetId: importPackageId,
                 deliveryId: deliveryId,
@@ -119,7 +119,7 @@ const handleImportPackage = async () => {
                 note: "External transit" // Add the missing note field
             };
         } else {
-            apiUrl = `http://192.168.28.128:8080/api/delivery/handover/changePacket/${importPackageId}/${deliveryId}`;
+            apiUrl = `http://84.247.135.231:8080/api/delivery/handover/changePacket/${importPackageId}/${deliveryId}`;
             requestBody = { importType: importType };
         }
 
@@ -281,7 +281,7 @@ if (err.message.includes('Token') || err.message.includes('Session')) {
                 destination: formData.destination,
             };
 
-            const apiUrl = `http://192.168.28.128:8080/api/delivery/package/package/${deliveryId}`;
+            const apiUrl = `http://84.247.135.231:8080/api/delivery/package/package/${deliveryId}`;
             console.log('API URL:', apiUrl);
             console.log('Package Data:', packageData);
 
@@ -348,7 +348,7 @@ navigate("/delivery")
             setError(null);
 
             try {
-                const response = await authFetch('http://192.168.28.128:8080/agencies', {
+                const response = await authFetch('http://84.247.135.231:8080/agencies', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

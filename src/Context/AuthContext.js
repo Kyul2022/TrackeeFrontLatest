@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   // Login function
   const login = async (email, password) => {
-    const resp = await authFetch("http://192.168.28.128:8080/api/users/login", {
+    const resp = await authFetch("http://84.247.135.231:8080/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         const clientId = "microservices-client";
         const clientSecret = "xzqSYMI1pzumAj9BGD7BSKhI3IFAwy5e";
 
-        const refreshResp = await fetch("http://192.168.28.128:8180/realms/microservices/protocol/openid-connect/token", {
+        const refreshResp = await fetch("http://84.247.135.231:8180/realms/microservices/protocol/openid-connect/token", {
           method: "POST",
           headers: { 
             "Content-Type": "application/x-www-form-urlencoded",
@@ -109,7 +109,7 @@ export const AuthProvider = ({ children }) => {
           const clientId = "microservices-client";
           const clientSecret = "xzqSYMI1pzumAj9BGD7BSKhI3IFAwy5e";
 
-          const refreshResp = await fetch("http://192.168.28.128:8180/realms/microservices/protocol/openid-connect/token", {
+          const refreshResp = await fetch("http://84.247.135.231:8180/realms/microservices/protocol/openid-connect/token", {
             method: "POST",
             headers: { 
               "Content-Type": "application/x-www-form-urlencoded",

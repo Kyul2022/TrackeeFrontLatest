@@ -20,13 +20,13 @@ import Badge from '@mui/material/Badge';
 import { MyContext } from '../../App';
 import { NotificationContext } from '../../NotificationContext'; // Import the context
 import { useAuth } from "../../Context/AuthContext";
-
+import { useTranslation } from 'react-i18next';
 
 
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-    const [user, setUser] = useState({ email: "", lastName: "" });
+  const [user, setUser] = useState({ email: "", lastName: "" });
   const [notificationOpenDrop, setNotificationOpenDrop] = useState(null);
   const { unreadMessages, addNotification, removeNotification, hasNewMessage, setHasNewMessage } = useContext(NotificationContext);
   const open = Boolean(anchorEl);
@@ -38,11 +38,11 @@ const Header = () => {
   const { token, logout, authFetch } = useAuth();
 
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("accessToken"); // or your storage
-        const response = await authFetch("http://192.168.28.128:8080/api/users/me", {
+        const response = await authFetch("http://84.247.135.231:8080/api/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Header = () => {
 
   useEffect(() => {
 
-    const socket = new SockJS('http://192.168.28.128:8080/ws'); // Update with your actual backend URL
+    const socket = new SockJS('http://84.247.135.231:8080/ws'); // Update with your actual backend URL
     const stompClient = Stomp.over(socket);
 
     // Connect to the WebSocket server
@@ -135,6 +135,19 @@ const Header = () => {
     }
     navigate('/formupload');
   };
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  }
+
+  const lang = [
+    { code: "fr", label: "French" },
+    { code: "en", label: "english" }
+  ]
+
+  const { t } = useTranslation();
+
 
   return (
     <div>
@@ -159,7 +172,7 @@ const Header = () => {
                 <Button className='rounded-circle mr-3' onClick={() => context.setIsToggleSidebar(!context.isToggleSidebar)}>
                   <MdMenuOpen />
                 </Button>
-               
+
 
               </div>
             )}
@@ -168,50 +181,66 @@ const Header = () => {
 
             {/* other header Wrapper starts */}
             <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
-            
-              {!token ? (
-  // If NOT logged in → show connect button
-  <Link to={'/login'}>
-    <Button className="btn-blue btn-lg btn-round">Se Connecter</Button>
-  </Link>
-) : (
-  // If logged in → show user menu with logout
-  <div className='myAccWrapper'>
-    <Button className='myAcc d-flex align-items-center' onClick={handleOpenMyAccDrop}>
-    <div className="userInfo res-hide"> 
-      <h4>{user.agence || "Agence"}</h4>
-      <p className="mb-0">{user.email || "Matricule"}</p>
-    </div>
-    </Button>
+              <button
+                key={lang.code}
+                onClick={() => changeLanguage("fr")}
+                className={`px-3 py-1 rounded ${i18n.language === "fr" ? "btn-blue" : "btn btn-light"}`}
+              >
+                FR
+              </button>
+              <button
+                onClick={() => changeLanguage("en")}
+                className={`px-3 py-1 rounded ${i18n.language === "en" ? "btn-blue" : "btn btn-light"}`}
+              >
+                EN
+              </button>
 
-    <Menu
-      anchorEl={anchorEl}
-      id="account-menu"
-      open={open}
-      onClose={handleCloseMyAccDrop}
-      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-    >
-      <MenuItem onClick={handleCloseMyAccDrop}>
-        <ListItemIcon><PersonAdd /></ListItemIcon>
-        Mon Compte
-      </MenuItem>
-      <MenuItem onClick={handleCloseMyAccDrop}>
-        <ListItemIcon><Settings /></ListItemIcon>
-        Paramètres
-      </MenuItem>
-      <MenuItem
-        onClick={() => {
-          logout();
-          handleCloseMyAccDrop();
-        }}
-      >
-        <ListItemIcon><Logout /></ListItemIcon>
-        Déconnexion
-      </MenuItem>
-    </Menu>
-  </div>
-)}
+              {!token ? (
+                // If NOT logged in → show connect button
+                <Link to={'/login'}>
+                  <Button className="btn-blue btn-lg btn-round">Se Connecter</Button>
+                </Link>
+              ) : (
+                // If logged in → show user menu with logout
+                <div className='myAccWrapper flex '>
+                  <Button className='myAcc d-flex align-items-center' onClick={handleOpenMyAccDrop}>
+                    <div className="userInfo res-hide">
+                      <h4>{user.agence || "Agence"}</h4>
+                      <p className="mb-0">{user.email || "Matricule"}</p>
+                    </div>
+                  </Button>
+
+
+
+
+                  <Menu
+                    anchorEl={anchorEl}
+                    id="account-menu"
+                    open={open}
+                    onClose={handleCloseMyAccDrop}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                  >
+                    <MenuItem onClick={handleCloseMyAccDrop}>
+                      <ListItemIcon><PersonAdd /></ListItemIcon>
+                      Mon Compte
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseMyAccDrop}>
+                      <ListItemIcon><Settings /></ListItemIcon>
+                      Paramètres
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        logout();
+                        handleCloseMyAccDrop();
+                      }}
+                    >
+                      <ListItemIcon><Logout /></ListItemIcon>
+                      Déconnexion
+                    </MenuItem>
+                  </Menu>
+                </div>
+              )}
 
 
 

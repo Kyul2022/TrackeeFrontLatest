@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoSearch } from "react-icons/io5";
 import { useAuth } from '../../Context/AuthContext';
 import { MyContext } from '../../App';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const [search, setSearch] = useState("");
@@ -53,7 +54,7 @@ const Dashboard = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/alltome', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/alltome', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -109,7 +110,7 @@ const Dashboard = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/package/alltome', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/package/alltome', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -151,7 +152,7 @@ const Dashboard = () => {
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
 
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/delivery/going-external', {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/delivery/going-external', {
         method: 'GET',
         credentials: 'include', // Include session cookies
         headers: {
@@ -222,7 +223,7 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
         throw new Error('Token d\'authentification manquant. Veuillez vous reconnecter.');
       }
       //alert(selectedItem);
-      const response = await authFetch('http://192.168.28.128:8080/api/delivery/retrait/'+selectedItem, {
+      const response = await authFetch('http://84.247.135.231:8080/api/delivery/retrait/'+selectedItem, {
         method: 'POST',
         credentials: 'include', // Include session cookies
         headers: {
@@ -269,6 +270,19 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
     setSelectedItem(null); 
   };
 
+   const { i18n } = useTranslation();
+  
+    const changeLanguage = (lang) => {
+      i18n.changeLanguage(lang);
+    }
+  
+    const lang = [
+      { code: "fr", label: "French" },
+      { code: "en", label: "english" }
+    ]
+  
+    const { t } = useTranslation();
+
 
     return (
         <>
@@ -291,11 +305,11 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
       textAlign: "center"
     }}
   >
-    <h1 style={{ fontSize: "28px", fontWeight: "700", color: "#1e5dd0", marginBottom: "10px" }}>
-      Bienvenue
+    <h1 style={{ fontSize: "28px", fontWeight: "700", color: "#20948B", marginBottom: "10px" }}>
+       {t("Bienvenue")}
     </h1>
     <p style={{ fontSize: "16px", color: "#555" }}>
-      Suivez vos livraisons en temps réel et restez informé.
+      {t("Suivez vos livraisons en temps réel et restez informé.")}
     </p>
   </div>
 
@@ -306,19 +320,19 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
                 </div>
 
                <div className="card shadow border-0 p-3 mt-4">
-                    <h3 className="hd">Tableau des Colis</h3>
+                    <h3 className="hd">{t("Tableau des Colis")}</h3>
 
                       <div className="tab-pane active show" id="retrait">
                         <div className="card shadow border-0 p-3 mt-4">
                           <div className="d-flex align-items-center justify-content-between">
-                            <h3 className="hd">Retrait des colis</h3>
+                            <h3 className="hd">{t("Retrait des Colis")}</h3>
 
                             <div className="searchBox position-relative d-flex align-items-center">
                               <IoSearch className="mr-2" />
                               <input
                                 onChange={(e) => setSearchR(e.target.value)}
                                 type="text"
-                                placeholder="Rechercher ici..."
+                                placeholder={t("Rechercher ici...")}
                                 className="text-black"
                               />
                             </div>
@@ -329,14 +343,14 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
                             <table className="table table-bordered v-align">
                               <thead className="thead-dark">
                                 <tr>
-                                  <th>ID COLIS</th>
-                                  <th>ID LIVRAISON</th>
-                                  <th>VILLE DEPART</th>
-                                  <th>VILLE DESTINATRICE</th>
-                                  <th>EXPEDITEUR</th>
-                                  <th>DESTINATAIRE</th>
-                                  <th>STATUT</th>
-                                  <th>ACTIONS</th>
+                                  <th>{t("ID COLIS")}</th>
+                                  <th>{t("ID LIVRAISON")}</th>
+                                  <th>{t("VILLE DEPART")}</th>
+                                  <th>{t("VILLE DESTINATRICE")}</th>
+                                  <th>{t("EXPEDITEUR")}</th>
+                                  <th>{t("DESTINATAIRE")}</th>
+                                  <th>{t("STATUT")}</th>
+                                  <th>{t("ACTIONS")}</th>
                                 </tr>
                               </thead>
 
@@ -370,7 +384,7 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
         disabled={itemR.status === "Retiré"} // Disabled if already withdrawn
         className={itemR.status === "Retiré" ? "btn-error" : "btn-green"}
       >
-        {itemR.status === "Retiré" ? "Déjà retiré" : "Retirer"}
+        {itemR.status === "Retiré" ? t("Déjà retiré") : t("Retirer")}
       </Button>
     </td>
   </tr>
@@ -380,7 +394,7 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
                             </table>
                             <div className="d-flex tableFooter">
                               <p>
-                                Showing <b>5 </b> of <b>20 </b> results
+                                {t("voir")} <b>5 </b> {t("de")} <b>20 </b>{t("résultats")}
                               </p>
                               <Pagination
                                 count={20}
@@ -403,12 +417,12 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
                             </DialogTitle>
                             <DialogContent>
                               <DialogContentText id="withdrawal-confirmation-description">
-                                Êtes-vous sûr de vouloir retirer ce colis ? Cette action est irréversible.
+                                {("Êtes-vous sûr de vouloir marquer ce colis comme retiré ? Cette action est irréversible.")}
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={handleCloseModal} color="error">
-                                Annuler
+                                {t("Annuler")}
                               </Button>
 <Button 
   onClick={handleConfirmWithdrawn} 
@@ -416,7 +430,7 @@ console.log("Current deliveries IDs:", currentDeliveries.map(d => d.numSerie));
   autoFocus 
   disabled={loading} // prevent multiple clicks
 >
-  {loading ? "Traitement..." : "Confirmer"}
+  {loading ? t("Traitement...") : t("Confirmer")}
 </Button>
 
                             </DialogActions>

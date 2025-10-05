@@ -37,7 +37,7 @@ const handleSearch = async () => {
             return;
         }
 
-const response = await fetch(`http://192.168.28.128:8080/api/delivery/tracking/fromOffice/${searchValue}`, {
+const response = await fetch(`http://84.247.135.231:8080/api/delivery/tracking/fromOffice/${searchValue}`, {
   method: "GET",
   headers: {
     "Content-Type": "application/json"

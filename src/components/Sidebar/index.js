@@ -9,6 +9,7 @@ import { AirportShuttle, Report, ScatterPlotSharp } from '@mui/icons-material'
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import { PiHandWithdrawFill } from 'react-icons/pi'
 import { GrResources } from 'react-icons/gr'
+import { useTranslation } from 'react-i18next';
 
 const Sidebar = () => {
   const [activeTab, setActiveTab] = useState(null)
@@ -18,6 +19,11 @@ const Sidebar = () => {
     setActiveTab(index)
     setIsToggleSubmenu(activeTab === index ? !isToggleSubmenu : true)
   }
+
+    const { i18n } = useTranslation();
+    
+     
+      const { t } = useTranslation();
 
   return (
     <>
@@ -31,7 +37,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 0 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><MdDashboard /></span>
-                Dashboard
+                {t("Tableau de bord")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -45,7 +51,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 4 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><Send /></span>
-                Envoi de colis
+                {t("Envoi de colis")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -59,7 +65,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 9 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><PiHandWithdrawFill /></span>
-                Reception et Retrait
+                 {t("Reception et Retrait")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -73,7 +79,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 5 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><AirportShuttle /></span>
-                Livraison en cours
+                 {t("Livraison en cours")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -87,7 +93,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 6 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><GpsFixedIcon /></span>
-                Tracking
+                { t("Suivi des colis")} 
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -100,14 +106,14 @@ const Sidebar = () => {
               style={{ color: activeTab === 1 ? '#20948B' : 'black' }}
             >
               <span className='icon'><GrResources /></span>
-              Gestion Des Ressources
+              {t("Gestion Des Ressources")}
               <span className='arrow'><FaAngleRight /></span>
             </Button>
             <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu ? 'colapse' : 'colapsed'}`}>
               <ul className='submenu'>
-                <li><Link to="/buses">Gestion des Véhicules</Link></li>
-                <li><Link to="/personnel">Gestion du Personnel</Link></li>
-                <li><Link to="/agencies">Gestion des Agences</Link></li>
+                <li><Link to="/buses">{t("Gestion des Véhicules")}</Link></li>
+                <li><Link to="/personnel">{t("Gestion du Personnel")}</Link></li>
+                <li><Link to="/agencies">{t("Gestion des Agences")}</Link></li>
               </ul>
             </div>
           </li>
@@ -120,7 +126,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 7 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><ScatterPlotSharp /></span>
-                Rebuts
+                {t("Rebuts")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -134,7 +140,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 8 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><Report /></span>
-                Rapports
+                {t("Rapports")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -148,7 +154,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 10 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><Report /></span>
-                Transit
+                {t("Transit")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -162,7 +168,7 @@ const Sidebar = () => {
                 style={{ color: activeTab === 3 ? '#20948B' : 'black' }}
               >
                 <span className='icon'><FaBell /></span>
-                Notifications
+                {t("Notifications")}
                 <span className='arrow'><FaAngleRight /></span>
               </Button>
             </Link>
@@ -172,7 +178,7 @@ const Sidebar = () => {
         <br />
         <div className='logoutWrapper'>
           <div className='logoutBox'>
-            <Button variant='contained'><IoMdLogOut /> Déconnexion</Button>
+            <Button variant='contained'><IoMdLogOut />{t("Déconnexion")} </Button>
           </div>
         </div>
       </div>

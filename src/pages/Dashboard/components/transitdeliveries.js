@@ -16,7 +16,7 @@ const Transitdeliveries = (props) => {
               navigate("/"); 
           throw new Error('Authentication token is missing. Please log in.');
         }
-          const response = await authFetch(`http://192.168.28.128:8080/api/delivery/rebut/all`);
+          const response = await authFetch(`http://84.247.135.231:8080/api/delivery/rebut/all`);
 
           const data = await response.json();
           setCount(data);

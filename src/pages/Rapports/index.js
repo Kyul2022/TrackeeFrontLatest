@@ -75,7 +75,7 @@ const Rapports = () => {
       end: endFormatted      // '2025-09-10' format
     });
 
-            const apiUrl = `http://192.168.28.128:8080/api/delivery/stats/${type}/pdf?${params}`;
+            const apiUrl = `http://84.247.135.231:8080/api/delivery/stats/${type}/pdf?${params}`;
             console.log('API URL:', apiUrl);
 
             const response = await authFetch(apiUrl);
@@ -139,7 +139,7 @@ navigate("/rapports")
       end: endFormatted      // '2025-09-10' format
     });
 
-            const apiUrl = `http://192.168.28.128:8080/api/delivery/stats/${type}/pdf?${params}`;
+            const apiUrl = `http://84.247.135.231:8080/api/delivery/stats/${type}/pdf?${params}`;
             console.log('API URL:', apiUrl);
 
             const response = await authFetch(apiUrl);
@@ -207,7 +207,7 @@ const fetchStatsData = async (type) => {
     throw new Error('Authentication token is missing. Please log in.');
   }
     
-    const response = await authFetch(`http://192.168.28.128:8080/api/delivery/stats/${type}?${params}`);
+    const response = await authFetch(`http://84.247.135.231:8080/api/delivery/stats/${type}?${params}`);
     const data = await response.json();
       
       switch(type) {
@@ -246,7 +246,7 @@ const fetchStatsData = async (type) => {
     throw new Error('Authentication token is missing. Please log in.');
   }
     
-    const response = await authFetch(`http://192.168.28.128:8080/api/delivery/stats/summary?${params}`);
+    const response = await authFetch(`http://84.247.135.231:8080/api/delivery/stats/summary?${params}`);
     const data = await response.json();
     setStats(data);
     } catch (error) {
